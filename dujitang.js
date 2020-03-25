@@ -3,6 +3,7 @@ click_times = 0
 
 //Writes text to field character by character
 function showText(destination, message, speed, callback) {
+    console.log('message', message);
     var i = 0;
     var interval = setInterval(function () {
         $(destination).append(message.charAt(i));
@@ -22,7 +23,10 @@ function randomQuote() {
         dataArrLen = dataArr.length;
         $("#random_quote").text("");
         $("#random_author").text("");
-        showText("#random_quote", dataArr[Math.ceil(Math.random() * dataArrLen)], 10, function () {
+        txt_str = dataArr[Math.ceil(Math.random() * dataArrLen)];
+        if (txt_str === undefined || txt_str === '')
+            txt_str = '我最大的缺点，就是缺点钱。';
+        showText("#random_quote", txt_str, 10, function () {
         })
     } else {
         //Using the Forsimatic API
@@ -45,7 +49,11 @@ function randomQuote() {
                 click_times = 0;
                 dataArrLen = dataArr.length;
 
-                showText("#random_quote", dataArr[Math.ceil(Math.random() * dataArrLen)], 10, function () {
+                txt_str = dataArr[Math.ceil(Math.random() * dataArrLen)];
+                console.log('txt_str', txt_str);
+                if (txt_str === undefined || txt_str === '')
+                    txt_str = '我最大的缺点，就是缺点钱。';
+                showText("#random_quote", txt_str, 10, function () {
                     // showText("#random_author", '-' + response.quoteAuthor, 10, function () {
                     //     //Appending blinking div after author
                     // });
@@ -72,7 +80,7 @@ $("#quoteButton").click(function () {
     //Disables button press while quote is printing
     setTimeout(function () {
         $("#quoteButton").attr('disabled', false);
-    }, 2000);
+    }, 1000);
 
     //Scrolls to the quote
     $('html, body').animate({
