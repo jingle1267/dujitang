@@ -1,0 +1,111 @@
+body {
+    font-size: 32px;
+    color: #399c1b;
+    font-family: 'VT323', monospace;
+    background-image: linear-gradient(
+            #5673b5, #93d1c8);
+    box-shadow: inset 0 0 100px hsla(0, 0%, 0%, .3);
+    min-height: 100vh;
+}
+
+.container {
+    padding: 5%;
+}
+
+.row {
+    padding: 7% 7% 80px;
+    margin: 0;
+    background-color: grey;
+    border-radius: 5px;
+    position: relative;
+    box-shadow: 7px 5px 20px rgba(0, 0, 0, 0.65);
+}
+
+#frame {
+    border: 40px solid;
+    border-color: #676A62 #8D908F #AEACB0 #8D908F;
+    padding: 0;
+    border-radius: 15px;
+    box-shadow: 0px 2px 30px rgba(255, 255, 255, 0.1);
+}
+
+#quote-box {
+    min-height: 400px;
+    background-color: #111;
+    border-radius: 10px;
+    margin: -8px;
+    position: relative;
+    padding: 5%;
+    text-shadow: 3px 3px 1px rgba(0, 0, 0, 0.5);
+}
+
+#quote-box:before {
+    content: "";
+    width: 99%;
+    height: 98%;
+    display: block;
+    position: absolute;
+    left: 0.5%;
+    top: 1%;
+    box-shadow: inset 0px 10px 70px rgba(0, 0, 0, 1);
+    border-radius: 8px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.2) 1%, rgba(255, 255, 255, 0.3) 4%, rgba(255, 255, 255, 0.1) 40%, rgba(255, 255, 255, 0) 100%);
+}
+
+#random_quote {
+}
+
+#random_author {
+    padding-left: 20px;
+}
+
+.btn {
+    background-color: rgba(0, 0, 0, 0);
+    outline: none;
+    font-size: 1.1em;
+}
+
+#buttonContainer {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+.btn:hover {
+    color: green;
+}
+
+.btn:active,
+.btn:focus,
+.btn:visited {
+    outline: 0!important;
+    box-shadow: none;
+}
+
+.fa-twitter {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin: 0 0 5px 7%;
+    background: linear-gradient(#61bb46 15%, #fdb827 35%, #f5821f 45%, #e03a3e 55%, #963d97 67%, #009ddc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (max-width: 650px) {
+    #random_author {
+        padding-bottom: 100px;
+    }
+    .container {
+        padding: 0;
+    }
+    body {
+        font-size: 30px;
+    }
+    #frame {
+        border-width: 20px;
+    }
+}
