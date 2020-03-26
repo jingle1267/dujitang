@@ -1,9 +1,8 @@
 dataArr = []
-click_times = 0
 
 //Writes text to field character by character
 function showText(destination, message, speed, callback) {
-    console.log('message', message);
+    // console.log('message', message);
     var i = 0;
     var interval = setInterval(function () {
         $(destination).append(message.charAt(i));
@@ -17,13 +16,13 @@ function showText(destination, message, speed, callback) {
 
 //Calls to the forismatic API for a random quote
 function randomQuote() {
-    if (dataArr.length !== 0 && click_times < 5) {
+    if (dataArr.length !== 0) {
         // dataArr = response.data;
-        click_times += 1;
         dataArrLen = dataArr.length;
         $("#random_quote").text("");
         $("#random_author").text("");
-        txt_str = dataArr[Math.ceil(Math.random() * dataArrLen)];
+        txt_str = dataArr[0];
+        dataArr.shift()
         if (txt_str === undefined || txt_str === '')
             txt_str = '我最大的缺点，就是缺点钱。';
         showText("#random_quote", txt_str, 10, function () {
@@ -37,27 +36,25 @@ function randomQuote() {
             //If succesful does function
             success: function (response) {
                 //Clear previous random quote
-                $("#random_quote").text("");
-                $("#random_author").text("");
+                if (response !== undefined && response.data !== undefined && response.data.length > 0) {
+                    $("#random_quote").text("");
+                    $("#random_author").text("");
 
-                //Checks if there is no author
-                if (response.data === undefined) {
-                    response.quoteAuthor = "unknown";
+                    dataArr = response.data;
+                    dataArrLen = dataArr.length;
+
+                    txt_str = dataArr[Math.ceil(Math.random() * dataArrLen)];
+                    // console.log('txt_str', txt_str);
+                    if (txt_str === undefined || txt_str === '')
+                        txt_str = '我最大的缺点，就是缺点钱。';
+                    showText("#random_quote", txt_str, 10, function () {
+                        // showText("#random_author", '-' + response.quoteAuthor, 10, function () {
+                        //     //Appending blinking div after author
+                        // });
+                    })
+                } else {
+                    console.log('接口异常无数据');
                 }
-
-                dataArr = response.data;
-                click_times = 0;
-                dataArrLen = dataArr.length;
-
-                txt_str = dataArr[Math.ceil(Math.random() * dataArrLen)];
-                console.log('txt_str', txt_str);
-                if (txt_str === undefined || txt_str === '')
-                    txt_str = '我最大的缺点，就是缺点钱。';
-                showText("#random_quote", txt_str, 10, function () {
-                    // showText("#random_author", '-' + response.quoteAuthor, 10, function () {
-                    //     //Appending blinking div after author
-                    // });
-                })
 
             }
         });
