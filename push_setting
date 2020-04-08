@@ -1,0 +1,2 @@
+git remote add coding git@e.coding.net:keeeweee/dujitang.git
+git push coding
