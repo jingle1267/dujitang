@@ -73,6 +73,9 @@ setInterval(function () {
 //Button repeats function
 $("#quoteButton").click(function () {
     $("#quoteButton").attr('disabled', true);
+
+    _czc.push(["_trackEvent", "毒鸡汤", "换一条", "毒鸡汤换一条"]);
+
     randomQuote();
     //Disables button press while quote is printing
     setTimeout(function () {
