@@ -30,7 +30,7 @@ function randomQuote() {
     } else {
         //Using the Forsimatic API
         $.ajax({
-            url: "./data/api&p=" + Math.ceil(Math.random() * 61),
+            url: "./data/api&p=" + Math.ceil(Math.random() * 220),
             dataType: "json",
             type: "GET",
             //If succesful does function
